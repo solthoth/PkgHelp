@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PkgInstaller", "PkgInstaller\PkgInstaller.csproj", "{C5EEBA57-1019-45AC-8CE9-4821FA8CF07A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PkgInstaller.UnitTests", "PkgInstaller.UnitTests\PkgInstaller.UnitTests.csproj", "{86951AAE-4C17-4C5E-B0D8-15A7CBD790CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C5EEBA57-1019-45AC-8CE9-4821FA8CF07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EEBA57-1019-45AC-8CE9-4821FA8CF07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EEBA57-1019-45AC-8CE9-4821FA8CF07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86951AAE-4C17-4C5E-B0D8-15A7CBD790CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86951AAE-4C17-4C5E-B0D8-15A7CBD790CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86951AAE-4C17-4C5E-B0D8-15A7CBD790CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86951AAE-4C17-4C5E-B0D8-15A7CBD790CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
