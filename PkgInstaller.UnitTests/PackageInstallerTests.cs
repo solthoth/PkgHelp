@@ -39,12 +39,22 @@ namespace PkgInstaller.Tests
             };
         }
 
-        [Test()]
+        [Test]
         public void Given_A_Valid_String_When_ValidateInput_Then_Returns_True()
         {
             var installer = new PackageInstaller();
 
             var result = installer.ValidateInput(simplePackages.First());
+
+            result.Should().BeTrue();
+        }
+
+        [Test()]
+        public void Given_A_Valid_String_List_When_ValidateList_Then_Returns_True()
+        {
+            var installer = new PackageInstaller();
+
+            var result = installer.ValidateList(validPackages);
 
             result.Should().BeTrue();
         }

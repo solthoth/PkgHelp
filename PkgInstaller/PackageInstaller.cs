@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PkgInstaller
 {
@@ -9,6 +10,11 @@ namespace PkgInstaller
         public bool ValidateInput(string package)
         {
             return package.Split(new string[] { ": " }, System.StringSplitOptions.None).Length > 1;            
+        }
+
+        public bool ValidateList(List<string> packages)
+        {
+            return packages.All(ValidateInput);
         }
     }
 }
