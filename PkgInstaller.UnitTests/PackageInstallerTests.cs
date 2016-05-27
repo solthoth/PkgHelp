@@ -12,6 +12,7 @@ namespace PkgInstaller.Tests
     {
         private List<string> simplePackages;
         private List<string> validPackages;
+        private List<string> validPackagesBadFormat;
         private List<string> invalidPackages;
 
         [SetUp]
@@ -28,6 +29,14 @@ namespace PkgInstaller.Tests
                 "CamelCaser: KittenService",
                 "Fraudstream: Leetmeme",
                 "Ice: "
+            };
+            validPackagesBadFormat = new List<string> {
+                "KittenService:",
+                "Leetmeme:Cyberportal",
+                "Cyberportal:Ice",
+                "CamelCaser:KittenService",
+                "Fraudstream:Leetmeme",
+                "Ice:"
             };
             invalidPackages = new List<string> {
                 "KittenService: ",
@@ -75,6 +84,14 @@ namespace PkgInstaller.Tests
             var installer = new PackageInstaller();
 
             installer.Invoking(action => action.ExtractDependencyOrder(invalidPackages)).ShouldThrow<PackageInstallerException>().WithMessage("Invalid dependency references");
+        }
+
+        [Test()]
+        public void Given_An_ValidPackage_List_With_Invalid_String_Format_When_ExtractDependencyOrder_Then_Throws_InvalidPackageInstallerException()
+        {
+            var installer = new PackageInstaller();
+
+            installer.Invoking(action => action.ExtractDependencyOrder(validPackagesBadFormat)).ShouldThrow<PackageInstallerException>().WithMessage("Invalid dependency format: [KittenService:| Leetmeme:Cyberportal| Cyberportal:Ice| CamelCaser:KittenService| Fraudstream:Leetmeme| Ice:]");
         }
     }
 }
