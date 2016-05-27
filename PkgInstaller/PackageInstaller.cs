@@ -31,6 +31,7 @@ namespace PkgInstaller
         private string TopologicalSort(List<string> packages, List<string> orderedPackages)
         {
             var recurse = false;
+            var changesMade = false;
             packages = packages.OrderBy(element => element.Split(new string[] { ": " }, StringSplitOptions.RemoveEmptyEntries).Length).ToList();
             for (var i = 0; i < packages.Count; i++)
             {
@@ -40,6 +41,7 @@ namespace PkgInstaller
                     orderedPackages.Add(dependencies.First());
                     // remove package from list
                     packages[i] = "";
+                    changesMade = true;
                 }
                 else if (dependencies.Length > 1)
                 {
@@ -51,9 +53,13 @@ namespace PkgInstaller
                         dependencies[dependencies.Length - 1] = "";
                         // reset packages index to new dependency settings
                         packages[i] = dependencies.ToString(':');
+                        changesMade = true;
                     }
                 }
             }
+
+            if (!changesMade)
+                throw new PackageInstallerException("Invalid dependency references");
             return recurse ? TopologicalSort(packages, orderedPackages) : orderedPackages.ToString(',');
         }
     }

@@ -68,5 +68,13 @@ namespace PkgInstaller.Tests
 
             result.Should().Match("KittenService, Ice, Cyberportal, CamelCaser, Leetmeme, Fraudstream");
         }
+
+        [Test()]
+        public void Given_An_InvalidPackage_List_When_ExtractDependencyOrder_Then_Throws_InvalidPackageInstallerException()
+        {
+            var installer = new PackageInstaller();
+
+            installer.Invoking(action => action.ExtractDependencyOrder(invalidPackages)).ShouldThrow<PackageInstallerException>().WithMessage("Invalid dependency references");
+        }
     }
 }
