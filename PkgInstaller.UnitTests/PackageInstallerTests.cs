@@ -7,7 +7,7 @@ using FluentAssertions;
 namespace PkgInstaller.Tests
 {
     [TestFixture()]
-    [Parallelizable]
+    [Parallelizable(ParallelScope.Children)]
     public class PackageInstallerTests
     {
         private List<string> simplePackages;
@@ -57,6 +57,16 @@ namespace PkgInstaller.Tests
             var result = installer.ValidateList(validPackages);
 
             result.Should().BeTrue();
+        }
+
+        [Test()]
+        public void Given_A_ValidPackage_List_When_ExtractDependencyOrder_Then_Returns_Install_Order_List()
+        {
+            var installer = new PackageInstaller();
+
+            var result = installer.ExtractDependencyOrder(validPackages);
+
+            result.Should().Match("KittenService, Ice, Cyberportal, CamelCaser, Leetmeme, Fraudstream");
         }
     }
 }
